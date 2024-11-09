@@ -3,5 +3,8 @@
   "slug": "reanimated-style-issue",
   "android": {
     "package": "com.anonymous.reanimatedstyleissue"
+  },
+  "ios": {
+    "bundleIdentifier": "com.anonymous.reanimatedstyleissue"
   }
 }
