@@ -7,6 +7,14 @@ import Animated, {
 } from "react-native-reanimated";
 import { View, Button } from "react-native";
 import { useEffect, useState } from "react";
+import * as Sentry from '@sentry/react-native';
+
+Sentry.init({
+  dsn: 'https://cd7ffc0d9a5ed80fd3c471db2c45db66@o4508268351062016.ingest.de.sentry.io/4508268351389776',
+
+  // uncomment the line below to enable Spotlight (https://spotlightjs.com)
+  // enableSpotlight: __DEV__,
+});
 
 export default function AnimatedStyleUpdateExample(props) {
   const width = useSharedValue(10);
