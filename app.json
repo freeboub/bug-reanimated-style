@@ -1,4 +1,7 @@
 {
   "name": "reanimated-style-issue",
-  "slug": "reanimated-style-issue"
+  "slug": "reanimated-style-issue",
+  "android": {
+    "package": "com.anonymous.reanimatedstyleissue"
+  }
 }

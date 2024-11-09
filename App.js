@@ -3,23 +3,31 @@ import Animated, {
   withTiming,
   useAnimatedStyle,
   Easing,
+  withRepeat,
 } from "react-native-reanimated";
 import { View, Button } from "react-native";
+import { useEffect, useState } from "react";
 
 export default function AnimatedStyleUpdateExample(props) {
-  const randomWidth = useSharedValue(10);
+  const width = useSharedValue(10);
 
   const config = {
-    duration: 500,
-    easing: Easing.bezier(0.5, 0.01, 0, 1),
+    duration: 1000,
+    easing: Easing.linear,
   };
+  useEffect(() => {
+    width.value = withRepeat(withTiming(350, config), 10000)
+  }, [])
 
   const style = useAnimatedStyle(() => {
     return {
-      width: withTiming(randomWidth.value, config),
+      width: width.value,
     };
   });
 
+  const [visible, setStyleVisible] = useState(false)
+
+  console.log('is visible', visible)
   return (
     <View
       style={{
@@ -31,14 +39,15 @@ export default function AnimatedStyleUpdateExample(props) {
     >
       <Animated.View
         style={[
-          { width: 100, height: 80, backgroundColor: "black", margin: 30 },
-          style,
+          { width: 1, height: 80, backgroundColor: "black", margin: 30 },
+          visible ? style : undefined,
         ]}
       />
       <Button
         title="toggle"
         onPress={() => {
-          randomWidth.value = Math.random() * 350;
+          console.log('toggle')
+          setStyleVisible(v => !v)
         }}
       />
     </View>
